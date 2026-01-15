@@ -1,10 +1,12 @@
 "use client";
-import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { Bars2Icon, ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { motion, AnimatePresence } from "framer-motion";
+import CartSlideOver from "../component/Cart";
 
-
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+export default function NavbarPro() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const links = [
     { name: "Home", href: "#" },
@@ -22,33 +24,44 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8">
-          {links.map(link => (
+          {links.map((link) => (
             <li key={link.name}>
-              <a href={link.href} className="hover:text-indigo-600 transition">{link.name}</a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button onClick={() => setOpen(!open)}>
-            {open ? <XMarkIcon className="w-6 h-6 text-indigo-600" /> : <XMarkIcon className="w-6 h-6 text-indigo-600" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <ul className="md:hidden bg-white shadow-md flex flex-col space-y-4 px-6 py-4">
-          {links.map(link => (
-            <li key={link.name}>
-              <a href={link.href} className="block hover:text-indigo-600 transition" onClick={() => setOpen(false)}>
+              <a
+                href={link.href}
+                className="hover:text-indigo-600 transition font-medium"
+              >
                 {link.name}
               </a>
             </li>
           ))}
         </ul>
-      )}
+
+        {/* Right side icons */}
+        <div className="flex items-center space-x-4">
+          {/* Cart Icon */}
+          <button
+            className="relative"
+            onClick={() => setCartOpen(true)}
+          >
+            <ShoppingCartIcon className="w-6 h-6 text-indigo-600 hover:text-indigo-500 transition" />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">
+              3
+            </span>
+          </button>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(true)}>
+              <Bars2Icon className="w-6 h-6 text-indigo-600" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Off-Canvas Menu */}
+      <CartSlideOver isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+
+      
     </nav>
   );
 }
