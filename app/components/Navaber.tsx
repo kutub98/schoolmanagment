@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Bars2Icon, ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { motion, AnimatePresence } from "framer-motion";
 import CartSlideOver from "../component/Cart";
+import ThemeToggle from "./ThemeToggle";
 
 export default function NavbarPro() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function NavbarPro() {
   ];
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav className="bg-white dark:bg-gray-900 dark:text-white  shadow-md fixed w-full z-50">
       <div className="container mx-auto px-6 md:px-0 flex justify-between items-center h-16">
         {/* Logo */}
         <div className="text-2xl font-bold text-indigo-600">ABC School</div>
@@ -34,6 +35,7 @@ export default function NavbarPro() {
               </a>
             </li>
           ))}
+          <ThemeToggle/>
         </ul>
 
         {/* Right side icons */}
