@@ -7,6 +7,7 @@ import CoursesCarousel from "./component/CoursesCarousel";
 import EnrollmentPremium from "./component/EnrollmentPremium";
 import TestimonialsPremium from "./component/TestimonialsPremium";
 import StatsPremium from "./component/State";
+import { AboutSection } from "./component/About";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <StatsPremium/>
       <TestimonialsPremium/>
       <EnrollmentPremium/>
+      <AboutSection/>
       {/* <StatsPremium/> */}
     </div>
   );
